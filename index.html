@@ -223,47 +223,47 @@
 		
 		@media (max-width: 768px) {
   .slide-container {
-    height: 60vh;
-    padding-top: 0;
-    align-items: flex-start;
+    width: 95vw;
+    height: auto;
+    max-height: 90vh;
     margin-top: 2vh;
+    margin-bottom: 2vh;
+    align-items: flex-start;
+  }
+
+  .slide {
+    height: auto !important;
+    min-height: 70vh;
   }
 
   .slide-content {
-    padding-top: 2vh !important;
-    padding-bottom: 4vh;
+    padding: 4vh 5vw;
   }
 
   #headshot {
     width: 30vw;
     height: 30vw;
     margin-top: 1vh;
-    margin-bottom: 1vh;
-  }
-
-  .intro {
-    font-size: 1rem;
-    line-height: 1.5;
-    padding: 0 5vw;
   }
 
   .nav-btn.left,
   .nav-btn.right {
-    top: 2vh;
-    transform: none;
+    top: 50%;
+    transform: translateY(-50%);
     height: 6vh;
     width: 6vh;
     font-size: 4vh;
   }
 
   .nav-btn.left {
-    left: 2vw;
+    left: 0;
   }
 
   .nav-btn.right {
-    right: 2vw;
+    right: 0;
   }
 }
+
 
 
 	</style>

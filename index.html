@@ -220,6 +220,19 @@
 			opacity: 1; /* full opacity on hover */
 			text-decoration: underline;
 		}
+
+		.monogram-btn {
+			background: none;
+			border: none;
+			padding: 0;
+			margin-top: auto;
+			margin-bottom: 0.75rem;
+			cursor: pointer;
+			display: flex;
+			justify-content: center;
+			}
+
+
 		
 		@media (max-width: 768px) {
   .slide-container {
@@ -270,12 +283,10 @@
 </head>
 
 <body>
-
-	<!-- Arrows OUTSIDE the slide container -->
-	<button id="leftArrow" class="nav-btn left" onclick="showPrev()">❮</button>
-	<button id="rightArrow" class="nav-btn right" onclick="showNext()">❯</button>
-
 	<div class="slide-container">
+		<!-- Arrows -->
+<button id="leftArrow" class="nav-btn left" onclick="showPrev()">❮</button>
+<button id="rightArrow" class="nav-btn right" onclick="showNext()">❯</button>
 		<!-- === SLIDE 1 START === -->
 		<div class="slide active" id="slide0">
 			<div class="slide-content">
@@ -293,7 +304,9 @@
 						My work bridges research and real-world impact.
 					</p>
 				</div>
-				<img class="monogram-img"/>
+				<button class="monogram-btn" onclick="goToFirstSlide()">
+					<img class="monogram-img" alt="CC" />
+				</button>
 			</div>
 		</div>
 		<!-- === SLIDE 1 END === -->
@@ -313,7 +326,9 @@
 				</div>
 				<a href="https://www.pew.org/en/research-and-analysis/articles/2025/02/27/adults-with-disabilities-face-barriers-to-behavioral-health-services"
 					target="_blank">Read full article</a>
-				<img class="monogram-img"/>
+				<button class="monogram-btn" onclick="goToFirstSlide()">
+					<img class="monogram-img" alt="CC" />
+				</button>
 				<div class="progress-bar-container global-progress">
 					<div class="progress-bar-fill"></div>
 				</div>
@@ -338,7 +353,9 @@
 				</div>
 				<a href="https://www.pew.org/en/research-and-analysis/articles/2025/02/12/federal-government-lifts-key-barrier-to-stimulant-addiction-care"
 					target="_blank">Read full article</a>
-					<img class="monogram-img"/>
+					<button class="monogram-btn" onclick="goToFirstSlide()">
+						<img class="monogram-img" alt="CC" />
+					</button>
 				<div class="progress-bar-container global-progress">
 					<div class="progress-bar-fill"></div>
 				</div>
@@ -362,7 +379,9 @@
 				</div>
 				<a href="https://www.pew.org/en/research-and-analysis/fact-sheets/2024/08/stimulant-use-is-contributing-to-rising-fatal-drug-overdoses"
 					target="_blank">Read full article</a>
-				<img class="monogram-img"/>
+				<button class="monogram-btn" onclick="goToFirstSlide()">
+					<img class="monogram-img" alt="CC" />
+				</button>
 				<div class="progress-bar-container global-progress">
 					<div class="progress-bar-fill"></div>
 				</div>
@@ -460,6 +479,10 @@
 			img.alt = "CC";
 			});
 		});
+			function goToFirstSlide() {
+					current = 0;
+					updateSlide();
+				}
 
 	</script>
 </body>

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Camillicles | Camille Clark</title>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Inter&family=Lora&family=Open+Sans&family=Poppins&family=Raleway&family=Playfair+Display&family=Source+Sans+Pro&display=swap"
+		rel="stylesheet">
+
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #f2f2f2;
+			overflow: hidden;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+		}
+		h1, h2, h3 {
+			font-family: 'Poppins', sans-serif;
+		}
+
+		body, p, .intro {
+  		font-family: 'Lora', serif;
+		}
+
+		.slide-container {
+			position: relative;
+			width: 90vw;
+			max-width: 500px;
+			height: 80vh;
+			max-height: 800px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.slide {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			border-radius: 2rem;
+			box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+			padding: 0;
+			box-sizing: border-box;
+			display: none;
+		}
+
+		.slide.active {
+			display: block;
+		}
+
+		#slide0 {
+			background-color: #f3e5f5;
+		}
+
+		#slide1 {
+			background-color: #e0f7fa;
+		}
+
+		#slide2 {
+			background-color: #fff9c4;
+		}
+
+		.slide-content {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			height: 100%;
+			width: 100%;
+			padding: 2rem;
+			overflow-y: auto;
+			box-sizing: border-box;
+			text-align: center;
+		}
+
+		.slide-content::-webkit-scrollbar {
+			width: 6px;
+		}
+
+		.slide-content::-webkit-scrollbar-thumb {
+			background-color: rgba(0, 0, 0, 0.2);
+			border-radius: 3px;
+		}
+
+		/* Only affects slide1, slide2, slide3 content spacing */
+		#slide1 .slide-content,
+		#slide2 .slide-content,
+		#slide3 .slide-content {
+			padding-top: 6rem;
+		}
+		#slide1 p,
+		#slide2 p,
+		#slide3 p{
+  font-style: italic;
+  color: #444;
+}
+
+
+		.scroll-box {
+			max-height: 400px;
+			overflow-y: auto;
+			width: 100%;
+			scrollbar-width: thin;
+		}
+
+		.scroll-box::-webkit-scrollbar {
+			width: 4px;
+		}
+
+		.scroll-box::-webkit-scrollbar-thumb {
+			background: rgba(0, 0, 0, 0.2);
+			border-radius: 8px;
+		}
+
+		#headshot {
+			width: 160px;
+			height: 160px;
+			object-fit: cover;
+			border-radius: 50%;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+			margin-bottom: 1rem;
+		}
+
+		.nav-btn {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			width: 3.5rem;
+			height: 6rem;
+			border: none;
+			border-radius: 2rem;
+			font-size: 3rem;
+			font-weight: 600;
+			font-family: 'Arial', 'Helvetica Neue', sans-serif;
+			color: #333;
+			cursor: pointer;
+			z-index: 20;
+			text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+			transition: transform 0.2s ease, color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+		}
+
+		.nav-btn.left {
+			left: calc(50% - 320px);
+		}
+
+		.nav-btn.right {
+			right: calc(50% - 320px);
+		}
+
+		.nav-btn:hover {
+			color: #000;
+			background-color: rgba(0, 0, 0, 0.1);
+			transform: translateY(-50%) scale(1.1);
+			box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+		}
+
+		.intro {
+			font-size: 1.1rem;
+			line-height: 1.6;
+			color: #444;
+			max-width: 36rem;
+			margin-bottom: 1rem;
+			text-align: center;
+		}
+
+		.monogram-img {
+	width: 60px;           /* Adjust width as needed */
+	height: 60px;          /* Adjust height as needed */
+	opacity: 0.60;         /* Subtle transparency */
+	object-fit: contain;   /* Keep aspect ratio */
+	margin-top: auto;
+	margin-bottom: 0.75rem;
+	user-select: none;
+	pointer-events: none;
+}
+
+
+		.progress-bar-container {
+			width: 100%;
+			height: 8px;
+			background-color: #e0d4e4;
+			border-bottom-left-radius: 2rem;
+			border-bottom-right-radius: 2rem;
+			overflow: hidden;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+		}
+
+		.progress-bar-fill {
+			height: 100%;
+			width: 0%;
+			background-color: rgba(106, 27, 154, 0.4);
+			transition: width 0.3s ease;
+		}
+
+		a {
+			text-decoration: none;
+			color: #5f4b8b;
+			font-weight: 500;
+			margin-top: 1rem;
+			opacity: 0.7; /* slight transparency */
+			transition: color 0.2s ease, opacity 0.2s ease;
+		}
+
+		a:hover {
+			color: #3e2f5e;
+			opacity: 1; /* full opacity on hover */
+			text-decoration: underline;
+		}
+		
+
+	</style>
+</head>
+
+<body>
+
+	<!-- Arrows OUTSIDE the slide container -->
+	<button id="leftArrow" class="nav-btn left" onclick="showPrev()">❮</button>
+	<button id="rightArrow" class="nav-btn right" onclick="showNext()">❯</button>
+
+	<div class="slide-container">
+		<!-- === SLIDE 1 START === -->
+		<div class="slide active" id="slide0">
+			<div class="slide-content">
+				<img id="headshot" alt="Camille Clark Headshot" />
+				<h2>Welcome</h2>
+				<div class="scroll-box">
+					<p class="intro">
+						I'm Camille Clark. A Researcher & Analyst focused on making complex public health and policy issues
+						easier to understand and act on.
+					</p>
+					<p class="intro">
+						This space is where I share my published work, data-driven insights, and the projects I’ve contributed to.
+					</p>
+					<p class="intro">
+						My work bridges research and real-world impact.
+					</p>
+				</div>
+				<img class="monogram-img"/>
+			</div>
+		</div>
+		<!-- === SLIDE 1 END === -->
+
+		<!-- === SLIDE 2 START: Adults With Disabilities === -->
+		<div class="slide" id="slide1" style="background-color: #ffe0e6;">
+			<div class="slide-content">
+				<h2>Overlooked and Underserved</h2>
+				<div class="scroll-box">
+					<p class="intro">
+						More than 1 in 4 adults in the United States has a disability. Yet they face major gaps in accessing behavioral
+						health services—gaps that remain even with insurance.
+					</p>
+					<p class="intro">
+						Without accommodations and intentional design, entire communities are excluded from care.
+					</p>
+				</div>
+				<a href="https://www.pew.org/en/research-and-analysis/articles/2025/02/27/adults-with-disabilities-face-barriers-to-behavioral-health-services"
+					target="_blank">Read full article</a>
+				<img class="monogram-img"/>
+				<div class="progress-bar-container global-progress">
+					<div class="progress-bar-fill"></div>
+				</div>
+
+			</div>
+		</div>
+		<!-- === SLIDE 2 END === -->
+		
+		<!-- === SLIDE 3 START: Stimulant Addiction Barrier Lifted === -->
+		<div class="slide" id="slide2" style="background-color: #e7f4ff;">
+			<div class="slide-content">
+				<h2>Policy That Opens Doors</h2>
+				<div class="scroll-box">
+					<p class="intro">
+						For years, a federal restriction blocked the use of Medicaid funds for certain residential mental health and
+						substance use treatments. That rule is now gone.
+					</p>
+					<p class="intro">
+						This shift marks a huge win for people seeking help for stimulant use disorder—removing a major structural
+						barrier to recovery.
+					</p>
+				</div>
+				<a href="https://www.pew.org/en/research-and-analysis/articles/2025/02/12/federal-government-lifts-key-barrier-to-stimulant-addiction-care"
+					target="_blank">Read full article</a>
+					<img class="monogram-img"/>
+				<div class="progress-bar-container global-progress">
+					<div class="progress-bar-fill"></div>
+				</div>
+
+			</div>
+		</div>
+		<!-- === SLIDE 3 END === -->
+		
+		<!-- === SLIDE 4 START: Stimulant Use & Overdose === -->
+		<div class="slide" id="slide3" style="background-color: #fdf1db;">
+			<div class="slide-content">
+				<h2>The Overdose Crisis Isn’t Just Opioids</h2>
+				<div class="scroll-box">
+					<p class="intro">
+						Stimulant use is now a major factor in the rising number of drug overdose deaths—especially when combined with
+						opioids.
+					</p>
+					<p class="intro">
+						Nearly 1 in 3 overdose deaths in 2021 involved a stimulant. The data tells a story we can’t afford to ignore.
+					</p>
+				</div>
+				<a href="https://www.pew.org/en/research-and-analysis/fact-sheets/2024/08/stimulant-use-is-contributing-to-rising-fatal-drug-overdoses"
+					target="_blank">Read full article</a>
+				<img class="monogram-img"/>
+				<div class="progress-bar-container global-progress">
+					<div class="progress-bar-fill"></div>
+				</div>
+
+			</div>
+		</div>
+		<!-- === SLIDE 4 END === -->
+
+	</div>
+
+	<script>
+		const slides = document.querySelectorAll('.slide');
+		const leftArrow = document.getElementById('leftArrow');
+		const rightArrow = document.getElementById('rightArrow');
+		let current = 0;
+
+		const img = document.getElementById("headshot");
+		const pewURL = "https://www.pew.org/-/media/post-launch-images/2024/08/camille-clarkjpgmaster/1x1_s.jpg";
+
+		img.onerror = () => {
+			img.src = "1x1_S.jpg"; // Local fallback
+		};
+
+		img.src = pewURL;
+
+		function updateSlide() {
+				slides.forEach((slide, index) => {
+					slide.classList.toggle('active', index === current);
+				});
+
+				leftArrow.style.display = current === 0 ? 'none' : 'flex';
+				rightArrow.style.display = current === slides.length - 1 ? 'none' : 'flex';
+
+				const allProgressBars = document.querySelectorAll('.global-progress');
+
+				// Total number of progressable slides (excluding the first/welcome slide)
+				const totalProgressSlides = slides.length - 1;
+
+				// Calculate progress index only if we're beyond slide 0
+				const progressIndex = current - 1;
+
+				allProgressBars.forEach((bar, index) => {
+					const fill = bar.querySelector('.progress-bar-fill');
+					if (current === 0) {
+						bar.style.display = 'none';
+					} else {
+						bar.style.display = 'block';
+						const percent = ((progressIndex + 1) / totalProgressSlides) * 100;
+						fill.style.width = `${percent}%`;
+					}
+				});
+			}
+
+
+
+
+
+		function showNext() {
+			current = (current + 1) % slides.length;
+			updateSlide();
+		}
+
+		function showPrev() {
+			current = (current - 1 + slides.length) % slides.length;
+			updateSlide();
+		}
+
+		updateSlide();
+
+		const monogramURL = "https://i.imgur.com/7D2dpO9.png";
+		const fallbackURL = "favicon.png";
+
+		function loadMonogram(url, fallback, callback) {
+			const img = new Image();
+			img.src = url;
+
+			img.onload = () => callback(url);
+			img.onerror = () => callback(fallback);
+		}
+
+		loadMonogram(monogramURL, fallbackURL, function(finalURL) {
+				// 1. Set favicon
+				let link = document.querySelector("link[rel='icon']");
+			if (!link) {
+				link = document.createElement("link");
+			link.rel = "icon";
+			document.head.appendChild(link);
+			}
+			link.href = finalURL;
+
+			// 2. Apply to all .monogram-img images
+			const monograms = document.querySelectorAll(".monogram-img");
+			monograms.forEach(img => {
+				img.src = finalURL;
+			img.alt = "CC";
+			});
+		});
+
+	</script>
+</body>
+
+</html>

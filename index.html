@@ -130,7 +130,7 @@
 		}
 
 		.nav-btn {
-			position: absolute;
+			position: relative;
 			top: 50%;
 			transform: translateY(-50%);
 			width: 3.5rem;
@@ -151,7 +151,13 @@
 			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 		}
 
-	
+		.nav-btn.left {
+			left: calc(50% - 320px);
+		}
+
+		.nav-btn.right {
+			right: calc(50% - 320px);
+		}
 
 		.nav-btn:hover {
 			color: #000;
@@ -170,15 +176,15 @@
 		}
 
 		.monogram-img {
-	width: 60px;           /* Adjust width as needed */
-	height: 60px;          /* Adjust height as needed */
-	opacity: 0.60;         /* Subtle transparency */
-	object-fit: contain;   /* Keep aspect ratio */
-	margin-top: auto;
-	margin-bottom: 0.75rem;
-	user-select: none;
-	pointer-events: none;
-}
+			width: 60px;           /* Adjust width as needed */
+			height: 60px;          /* Adjust height as needed */
+			opacity: 0.60;         /* Subtle transparency */
+			object-fit: contain;   /* Keep aspect ratio */
+			margin-top: auto;
+			margin-bottom: 0.75rem;
+			user-select: none;
+			pointer-events: none;
+		}
 
 
 		.progress-bar-container {
